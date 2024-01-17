@@ -1,0 +1,3 @@
+**/build/*
+*.swap
+*.DS_STORE
