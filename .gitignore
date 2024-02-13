@@ -1,5 +1,8 @@
 **/build/*
 *.swap
 *.DS_STORE
+*/.clangd
+*/run.sh
 assign2/OpenMesh*
 assign2/freeglut
+assign3/texture_images/*
