@@ -1,7 +1,12 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
+
+#endif
 #include <string>
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
