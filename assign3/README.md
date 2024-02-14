@@ -61,7 +61,7 @@ After this is all done, add some fun extras! Do not attempt extra credit until y
 - Be submitted along with the illustration video for the required animation (see below).
 - Be submitted along with a readme file documenting your program's features and describing the approaches you took to each of the open-ended problems we posed here (rendering the sky and determining coaster normals in particular). This is especially crucial if you have done something spectacular for which you wish to receive extra credit!
 
-Below is an example of a solution, with several extra credit elements. Of course, this is just an example; your solution will likely differ. This image is not a standard for grading or meant to show what you need to do. The text on this webpage gives the official (and only) rules for the assignment requirements.
+Below is an example of a solution, with several extra credit elements. Of course, this is just an example; your solution will likely differ. This image is not a standard for grading or meant to show what you need to do. The text in this README gives the official (and only) rules for the assignment requirements.
 
 ![final](resources/final.gif)
 
