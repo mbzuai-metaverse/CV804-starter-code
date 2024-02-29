@@ -2,15 +2,15 @@
 ## Introduction
 In this assignment, you will be building a ray tracer. Your ray tracer will be able to handle opaque surfaces with lighting and shadows. Provided for you will be starter code that will load scene data from a file.
 
-For this assignment, we will write our own renderer based on ray tracing. That means you will have to reimplementation your own rendering framework which should includes camera manipulation, lighting, basic primitives, and rendering pipeline (But do not worry, this starter code will make your life much more easy).
+For this assignment, we will write our own renderer based on ray tracing. That means you will have to reimplement your own rendering framework which should include camera manipulation, lighting, basic primitives, and rendering pipeline (But do not worry, this starter code will make your life much more easy).
 
 After completing this assignment, you should have a solid understanding of:
-- How to manually deal with the camera (extrinsics/intrinsics).
+- How to manually deal with the camera manipulation (extrinsics/intrinsics).
 - How to implement Phong Illumination.
 - How to implement geometric operators, e.g. calculating intersections, reflections, barycentric coordinates etc.
 - How to use shadow rays to simulate shadowing.
 
-Similar to the previous assignment, this homework is pretty challenging (and fun!). Therefore, we advise to start early and seek for help from TAs if you have any issue. **DO NOT** wait until very near of the deadline and request for extention. There will be no extention and your score will be deducted.
+Similar to the previous assignment, this homework is pretty challenging (and fun!). Therefore, we advise to start early and seek for helps from TAs if you have any issue. **DO NOT** wait until the very end of the deadline and request for extention. There will be no extention and your score will be deducted.
 
 ## Installing Dependencies
 The only additional library used in this assignment is OpenCV, which is already installed in previous homeworks. If you haven't installed it on your machine, please refer to the instructions of previous assignments.
@@ -29,7 +29,7 @@ After compiling, you can render a scene and show the result to the screen, for e
 ./assign4 ../scenes_data/test_single_sphere.scene
 ```
 
-Or you can also save the result by giving the execution file a second argument:
+Or you can save the result by giving the execution file a second argument:
 ```
 ./assign4 ../scenes_data/test_single_sphere.scene ./results/test_single_sphere.png
 ```
@@ -113,7 +113,7 @@ Similar to previous assignments, we also provide a starter code which already im
 - Normal for ray-plane intersection: The scene file provides a normal for every triangle vertex. However, those normals should NOT be used for ray-triangle intersection. For the intersection calculation, you need to compute the normal of the plane containing the triangle. You do so by taking a cross product of two edges.
 - The vertex normals provided in the scene file must be used for Phong shading. You must interpolate the vertex normals given in the scene file to the specific location of the ray-triangle intersection (using barycentric coordinates). You then use the resulting interpolated normal N in the shading equation (also to compute R). This will give smooth specular highlights.
 - If the angle between the view vector (V) and the reflected vector (R) is greater than 90 degrees, R dot V will be negative. In this case, the deviation between the reflection direction and the view direction is huge, i.e., we are very far from that case where the reflected and view direction nearly align and where we get specular highlights. So, there is no specular reflection in this case, and we can just clamp R dot V to zero. Similarly for the diffuse component. If L dot N < 0, the light is below the horizon, so we clamp L dot N to 0.
-- Be carefull with floating point error. For example, you should not do `a == 0` but instead `abs(a) <= _EPS` with `_EPS` is an adequate small constant.
+- Be carefull with floating point error. For example, you should not do `a == 0` but instead `abs(a) <= _EPS` with `_EPS` is an adequately small constant.
 
 
 ## Show People What You Got!!!
