@@ -38,8 +38,8 @@ void Camera::lookat(const Vec3d &eye, const Vec3d &lookat, const Vec3d &up_dir) 
      *
      */
 
-    cam2world_translation = Matrix(3, 3);
-    cam2world_rotation = Vec3d(0, 0, 0);
+    cam2world_translation = Vec3d(0, 0, 0);
+    cam2world_rotation = Matrix(3, 3);
 }
 
 
