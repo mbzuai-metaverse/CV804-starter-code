@@ -3,6 +3,7 @@
  * Borrowed from https://github.com/akalicki/matrix/blob/master/dist/matrix.cpp
  */
 
+#include <assert.h>
 #include <stdexcept>
 #include "matrix.h"
 #include "vec3d.h"
