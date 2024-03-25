@@ -8,3 +8,5 @@
 
 [Assignment #4](https://github.com/MBZUAI-Metaverse/CV804-starter-code/blob/main/assign4/README.md)
 
+[Assignment #5](https://github.com/MBZUAI-Metaverse/CV804-starter-code/blob/main/assign5/README.md)
+
