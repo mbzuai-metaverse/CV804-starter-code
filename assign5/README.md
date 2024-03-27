@@ -43,77 +43,79 @@ In this assignment, your task is to implement two basic surface registration alg
  
 - **Step 3:** Given the matched pairs, the point-to-point algorithm register two surfaces by iteratively solving for the rigid transformation that minimize the distance between the pairs. Specifically, let $(p_1, q_1), (p_2, q_2), ..., (p_n, q_n)$ be the matched pairs, then the algorithm can be formulated as:
 
-    $$
-    \begin{align}
-    R^*, t^* = \argmin_{R, t} \sum_{i=1}^n \|Rp_i +t - q_i\|
-    \end{align}
-    $$
+```math
+\begin{align}
+R^*, t^* = \underset{R, t}{\text{argmin}} \sum_{i=1}^n \|Rp_i +t - q_i\|
+\end{align}
+```
 
-    Decomposing R as three rotation matrices:
-    $$
-    R_x(\alpha) = \begin{bmatrix}
-        1 & 0 & 0 \\
-        0 & \cos \alpha & -\sin \alpha \\
-        0 & \sin \alpha & \cos \alpha
-    \end{bmatrix}
-    $$
-    $$
-    R_y(\beta) = \begin{bmatrix}
-    \cos(\beta) & 0 & \sin\beta \\
-    0 & 1 & 0 \\
-    -\sin\beta & 0 & \cos\beta
-    \end{bmatrix}
-    R_z(\gamma) = \begin{bmatrix}
-    \cos(\gamma) & 0 & -\sin\gamma \\
-    \sin\gamma & \cos\gamma & 0 \\
-    0 & 0 & 1
-    \end{bmatrix}
-    $$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Decomposing R as three rotation matrices:
+    
+```math
+R_x(\alpha) = \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & \cos \alpha & -\sin \alpha \\
+    0 & \sin \alpha & \cos \alpha
+\end{bmatrix}
+```
+```math
+R_y(\beta) = \begin{bmatrix}
+\cos(\beta) & 0 & \sin\beta \\
+0 & 1 & 0 \\
+-\sin\beta & 0 & \cos\beta
+\end{bmatrix}
+R_z(\gamma) = \begin{bmatrix}
+\cos(\gamma) & 0 & -\sin\gamma \\
+\sin\gamma & \cos\gamma & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+```
 
-    $$
-    R = R_z(\gamma) R_y(\beta) R_x(\alpha) = \begin{bmatrix}
-    c_\gamma c_\beta & -c_\alpha s_\gamma + c_\gamma s_\beta s_\alpha & s_\gamma s_\alpha + c_\gamma c_\alpha s_\beta \\
-    c_\beta s_\gamma & c_\gamma c_\alpha + s_\gamma s_\beta s_\alpha & c_\alpha s_\gamma s_\beta - c_\gamma s_\alpha \\
-    -s_\beta & c_\beta s_\alpha & c_\beta c_\alpha 
-    \end{bmatrix}
-    $$
+```math
+R = R_z(\gamma) R_y(\beta) R_x(\alpha) = \begin{bmatrix}
+c_\gamma c_\beta & -c_\alpha s_\gamma + c_\gamma s_\beta s_\alpha & s_\gamma s_\alpha + c_\gamma c_\alpha s_\beta \\
+c_\beta s_\gamma & c_\gamma c_\alpha + s_\gamma s_\beta s_\alpha & c_\alpha s_\gamma s_\beta - c_\gamma s_\alpha \\
+-s_\beta & c_\beta s_\alpha & c_\beta c_\alpha 
+\end{bmatrix}
+```
 
-    As can be seen from the formula of $R$, finding $R^*$ and $t^*$ is a non-linear optimization task. To linearize it, we can assume that for each iteration, there exists a small rotation that brings the source points closer to the target points, i.e. $\alpha, \beta, \gamma$ is small. With this assumption, we can linearize $\sin$ and $\cos$ by approximating them as follow:
-    $$
-    \begin{align*}
-    c_\alpha = \cos \alpha \approx 1 \\
-    s_\alpha = \sin \alpha \approx \alpha \\
-    s_x s_y \approx 0
-    \end{align*}
-    $$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; As can be seen from the formula of $R$, finding the optimal $R$ and $t$ is a non-linear optimization task. To linearize it, we can assume that for each iteration, there exists a small rotation that brings the source points closer to the target points, i.e. $\alpha, \beta, \gamma$ is small. With this assumption, we can linearize $\sin$ and $\cos$ by approximating them as follow:
+```math
+\begin{align*}
+c_\alpha = \cos \alpha \approx 1 \\
+s_\alpha = \sin \alpha \approx \alpha \\
+s_x s_y \approx 0
+\end{align*}
+```
 
-    Using the above approximation, we can rewrite $R$ as:
-    $$
-    R = \begin{bmatrix}
-    1 & -\gamma & \beta \\
-    \gamma & 1 & -\alpha \\
-    -\beta & \alpha & 1
-    \end{bmatrix}
-    $$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Using the above approximation, we can rewrite $R$ as:
 
-    Now we can convert the original optimization of $R$ and $t$ into solving for $x$ that minimize 
+```math
+R = \begin{bmatrix}
+1 & -\gamma & \beta \\
+\gamma & 1 & -\alpha \\
+-\beta & \alpha & 1
+\end{bmatrix}
+```
 
-    $$
-    \begin{align}
-    E = \|Ax - b\|
-    \end{align}
-    $$
-    where $x = [\alpha \quad \beta \quad \gamma \quad t_x \quad t_y \quad t_z]$. We already provide the solver for $x$ so your only remaining task is to build $A$ and $b$ by plugging the linear form of $R$ to (1).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now we can convert the original optimization of $R$ and $t$ into solving for $x$ that minimize 
+
+```math
+\begin{align}
+E = \|Ax - b\|
+\end{align}
+```
+where $x = [\alpha \quad \beta \quad \gamma \quad t_x \quad t_y \quad t_z]$. We already provide the solver for $x$ so your only remaining task is to build $A$ and $b$ by plugging the linear form of $R$ to (1).
 
 - **Step 4:** In point-to-plane optimization, as suggested by the name, we will minimize the distance between the source points with the tangent planes at their corresponding matched points. The optimization task is quite similar:
 
-    $$
-    \begin{align}
-    R^*, t^* = \argmin_{R, t} \sum_{i=1}^n \|n_i^T\left(Rp_i +t - q_i\right)\|
-    \end{align}
-    $$
+```math
+\begin{align}
+R^*, t^* = \underset{R, t}{\text{argmin}} \sum_{i=1}^n \|n_i^T\left(Rp_i +t - q_i\right)\|
+\end{align}
+```
 
-    You can follow the procedure in the point-to-point algorithm to derive the formula.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You can follow the procedure in the point-to-point algorithm to derive the formula.
 
 ## Starter Code Instructions
 Similar to previous assignments, we also provide a starter code which already implemented a few basic elements:
