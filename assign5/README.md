@@ -26,7 +26,7 @@ make
 
 After compiling, you can start the GUI by running:
 ```
-./aslign5 save_path path_to_mesh_1 path_to_mesh_2 ... path_to_mesh_n 
+./assign5 save_path path_to_mesh_1 path_to_mesh_2 ... path_to_mesh_n 
 ```
 where `save_path` is the path to the folder that you want to save the result and `path_to_mesh_i` is the path to the $i^{th}$ mesh. Note that the program requires at least two paths as input, otherwise it will raise an error.
 
