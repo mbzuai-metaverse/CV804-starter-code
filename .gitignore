@@ -6,3 +6,7 @@
 assign2/OpenMesh*
 assign2/freeglut
 assign3/texture_images/*
+assign6/lib/*
+assign6/bin/*
+assign6/output_meshses/*
+!assign6/output_meshses/.gitkeep
