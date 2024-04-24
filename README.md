@@ -12,5 +12,5 @@
 
 [Assignment #6](https://github.com/MBZUAI-Metaverse/CV804-starter-code/blob/main/assign6/README.md)
 
-[Assignment #6](https://github.com/MBZUAI-Metaverse/CV804-starter-code/blob/main/assign7/README.md)
+[Assignment #7](https://github.com/MBZUAI-Metaverse/CV804-starter-code/blob/main/assign7/README.md)
 
